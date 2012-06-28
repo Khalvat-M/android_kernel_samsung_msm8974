@@ -3307,7 +3307,7 @@ EXPORT_SYMBOL_GPL(sdhci_alloc_host);
 int sdhci_add_host(struct sdhci_host *host)
 {
 	struct mmc_host *mmc;
-	u32 caps[2];
+	u32 caps[2] = {0, 0};
 	u32 max_current_caps;
 	unsigned int ocr_avail;
 	int ret;
@@ -3337,8 +3337,10 @@ int sdhci_add_host(struct sdhci_host *host)
 	caps[0] = (host->quirks & SDHCI_QUIRK_MISSING_CAPS) ? host->caps :
 		sdhci_readl(host, SDHCI_CAPABILITIES);
 
-	caps[1] = (host->version >= SDHCI_SPEC_300) ?
-		sdhci_readl(host, SDHCI_CAPABILITIES_1) : 0;
+	if (host->version >= SDHCI_SPEC_300)
+		caps[1] = (host->quirks & SDHCI_QUIRK_MISSING_CAPS) ?
+			host->caps1 :
+			sdhci_readl(host, SDHCI_CAPABILITIES_1);
 	#if defined(CONFIG_MACH_JSGLTE_CHN_CMCC)
 	if(strcmp(host->hw_name, "msm_sdcc.2") == 0) {
 	#else
