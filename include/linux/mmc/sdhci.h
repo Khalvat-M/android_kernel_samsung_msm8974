@@ -124,6 +124,7 @@ struct sdhci_host {
 	unsigned int quirks2;	/* More deviations from spec. */
 
 #define SDHCI_QUIRK2_HOST_OFF_CARD_ON			(1<<0)
+#define SDHCI_QUIRK2_HOST_NO_CMD23			(1<<1)
 /*
  * Read Transfer Active/ Write Transfer Active may be not
  * de-asserted after end of transaction. Issue reset for DAT line.
