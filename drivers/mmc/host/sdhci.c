@@ -1636,7 +1636,7 @@ struct mmc_cd_gpio {
 static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 {
 	struct sdhci_host *host;
-	int present;
+	bool present;
 	unsigned long flags;
 	u32 tuning_opcode;
 
@@ -1675,21 +1675,22 @@ static void sdhci_request(struct mmc_host *mmc, struct mmc_request *mrq)
 
 	host->mrq = mrq;
 
-	/*
-	 * Firstly check card presence from cd-gpio.  The return could
-	 * be one of the following possibilities:
-	 *     negative: cd-gpio is not available
-	 *     zero: cd-gpio is used, and card is removed
-	 *     one: cd-gpio is used, and card is present
-	 */
-	present = mmc_gpio_get_cd(host->mmc);
-	if (present < 0) {
-		/* If polling, assume that the card is always present. */
-		if (host->quirks & SDHCI_QUIRK_BROKEN_CARD_DETECTION)
-			present = 1;
+	/* If polling, assume that the card is always present. */
+	if (host->quirks & SDHCI_QUIRK_BROKEN_CARD_DETECTION)  {
+		if ((struct mmc_cd_gpio *)(mmc->hotplug.handler_priv) == NULL)
+			present = true;
 		else
-			present = sdhci_readl(host, SDHCI_PRESENT_STATE) &
-					SDHCI_CARD_PRESENT;
+			present = ((struct mmc_cd_gpio *)(mmc->hotplug.handler_priv))->status;
+	}
+	else
+		present = sdhci_readl(host, SDHCI_PRESENT_STATE) &
+				SDHCI_CARD_PRESENT;
+
+	/* If we're using a cd-gpio, testing the presence bit might fail. */
+	if (!present) {
+		int ret = mmc_gpio_get_cd(host->mmc);
+		if (ret > 0)
+			present = true;
 	}
 
 	if (!present || host->flags & SDHCI_DEVICE_DEAD) {
