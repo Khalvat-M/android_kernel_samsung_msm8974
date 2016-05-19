@@ -1377,8 +1377,10 @@ $(help-board-dirs): help-%:
 # ---------------------------------------------------------------------------
 DOC_TARGETS := refcheckdocs
 
-%docs: scripts_basic FORCE
-	$(Q)$(MAKE) $(build)=Documentation $@
+DOC_TARGETS := xmldocs sgmldocs psdocs pdfdocs htmldocs mandocs installmandocs epubdocs cleandocs
+PHONY += $(DOC_TARGETS)
+$(DOC_TARGETS): scripts_basic FORCE
+	$(Q)$(MAKE) $(build)=Documentation -f $(srctree)/Documentation/Makefile.sphinx $@
 
 else # KBUILD_EXTMOD
 
