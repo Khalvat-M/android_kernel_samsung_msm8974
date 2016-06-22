@@ -1329,6 +1329,8 @@ help:
 	@$(MAKE) $(build)=$(package-dir) help
 	@echo  ''
 	@echo  'Documentation targets:'
+	@$(MAKE) -f $(srctree)/Documentation/Makefile.sphinx dochelp
+	@echo  ''
 	@$(MAKE) -f $(srctree)/Documentation/Makefile dochelp
 	@echo  ''
 	@echo  'Architecture specific targets ($(SRCARCH)):'

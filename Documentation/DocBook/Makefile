@@ -226,7 +226,7 @@ silent_gen_xml = :
 ###
 # Help targets as used by the top-level makefile
 dochelp:
-	@echo  ' Linux kernel internal documentation in different formats:'
+	@echo  ' Linux kernel internal documentation in different formats (DocBook):'
 	@echo  '  htmldocs        - HTML'
 	@echo  '  pdfdocs         - PDF'
 	@echo  '  psdocs          - Postscript'
