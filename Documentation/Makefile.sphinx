@@ -54,6 +54,7 @@ sgmldocs:
 psdocs:
 mandocs:
 installmandocs:
+cleanmediadocs:
 
 cleandocs:
 	$(Q)rm -rf $(BUILDDIR)

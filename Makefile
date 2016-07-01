@@ -1381,7 +1381,7 @@ $(help-board-dirs): help-%:
 # ---------------------------------------------------------------------------
 DOC_TARGETS := refcheckdocs
 
-DOC_TARGETS := xmldocs sgmldocs psdocs pdfdocs htmldocs mandocs installmandocs epubdocs cleandocs
+DOC_TARGETS := xmldocs sgmldocs psdocs pdfdocs htmldocs mandocs installmandocs epubdocs cleandocs cleanmediadocs
 PHONY += $(DOC_TARGETS)
 $(DOC_TARGETS): scripts_basic FORCE
 	$(Q)$(MAKE) $(build)=Documentation -f $(srctree)/Documentation/Makefile.sphinx $@
