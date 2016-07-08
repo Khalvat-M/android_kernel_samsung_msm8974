@@ -13,6 +13,8 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   kernel-documentation
+   media/media_uapi
 
 Indices and tables
 ==================
