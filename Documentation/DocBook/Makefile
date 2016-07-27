@@ -14,9 +14,7 @@ DOCBOOKS := z8530book.xml device-drivers.xml \
 	    genericirq.xml s390-drivers.xml uio-howto.xml scsi.xml \
 	    80211.xml debugobjects.xml sh.xml regulator.xml \
 	    alsa-driver-api.xml writing-an-alsa-driver.xml \
-	    tracepoint.xml drm.xml media_api.xml
-
-include $(srctree)/Documentation/DocBook/media/Makefile
+	    tracepoint.xml drm.xml
 
 ###
 # The build process is as follows (targets):
@@ -47,7 +45,6 @@ HTML := $(sort $(patsubst %.xml, %.html, $(BOOKS)))
 htmldocs: $(HTML)
 	$(call build_main_index)
 	$(call build_images)
-	$(call install_media_images)
 
 MAN := $(patsubst %.xml, %.9, $(BOOKS))
 mandocs: $(MAN)
@@ -254,7 +251,7 @@ clean-files := $(DOCBOOKS) \
 
 clean-dirs := $(patsubst %.xml,%,$(DOCBOOKS)) man
 
-cleandocs: cleanmediadocs
+cleandocs:
 	$(Q)rm -f $(call objectify, $(clean-files))
 	$(Q)rm -rf $(call objectify, $(clean-dirs))
 
