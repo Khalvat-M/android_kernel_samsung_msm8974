@@ -9,7 +9,8 @@ FILES = audio.h.rst ca.h.rst dmx.h.rst frontend.h.rst net.h.rst video.h.rst \
 
 TARGETS := $(addprefix $(BUILDDIR)/, $(FILES))
 
-htmldocs: ${TARGETS}
+.PHONY: all
+all: $(BUILDDIR) ${TARGETS}
 
 # Rule to convert a .h file to inline RST documentation
 
