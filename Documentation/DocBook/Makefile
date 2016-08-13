@@ -16,6 +16,14 @@ DOCBOOKS := z8530book.xml device-drivers.xml \
 	    alsa-driver-api.xml writing-an-alsa-driver.xml \
 	    tracepoint.xml drm.xml
 
+ifneq ($(SPHINXDIRS),)
+
+# Skip DocBook build if the user explicitly requested a sphinx dir
+.DEFAULT:
+	@echo "  SKIP    DocBook $@ target (SPHINXDIRS specified)."
+else
+
+
 ###
 # The build process is as follows (targets):
 #              (xmldocs) [by docproc]
@@ -219,6 +227,8 @@ silent_gen_xml = :
 	       -e "s/</\\&lt;/g"      \
 	       -e "s/>/\\&gt;/g";     \
 	   echo "</programlisting>")  > $@
+
+endif # SPHINDIR=...
 
 ###
 # Help targets as used by the top-level makefile
