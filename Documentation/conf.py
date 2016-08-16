@@ -251,11 +251,24 @@ latex_elements = {
 # The font size ('10pt', '11pt' or '12pt').
 #'pointsize': '10pt',
 
+# Latex figure (float) alignment
+#'figure_align': 'htbp',
+
+# Don't mangle with UTF-8 chars
+'inputenc': '',
+'utf8extra': '',
+
 # Additional stuff for the LaTeX preamble.
 #'preamble': '',
 
-# Latex figure (float) alignment
-#'figure_align': 'htbp',
+
+	% Use some font with UTF-8 support with XeLaTeX
+        \\usepackage{fontspec}
+        \\setsansfont{DejaVu Serif}
+        \\setromanfont{DejaVu Sans}
+        \\setmonofont{DejaVu Sans Mono}
+
+     '''
 }
 
 # Grouping the document tree into LaTeX files. List of tuples
