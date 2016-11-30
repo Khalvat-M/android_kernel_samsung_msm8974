@@ -37,6 +37,8 @@ nconfig: $(obj)/nconf
 # for external use.
 syncconfig: $(obj)/conf
 	$(Q)mkdir -p include/config include/generated
+	$(Q)test -e include/generated/autoksyms.h || \
+	    touch   include/generated/autoksyms.h
 	$< $(silent) --$@ $(Kconfig)
 
 localyesconfig localmodconfig: $(obj)/conf
