@@ -46,3 +46,7 @@ videodev2.h.rst: ${UAPI}/videodev2.h ${PARSER} $(SRC_DIR)/videodev2.h.rst.except
 
 cleandocs:
 	-rm ${TARGETS}
+
+all: $(IMGDOT) $(BUILDDIR) ${TARGETS}
+latex: $(IMGPDF) all
+linkcheck:
