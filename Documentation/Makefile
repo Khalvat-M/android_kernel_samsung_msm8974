@@ -98,16 +98,6 @@ endif # HAVE_SPHINX
 refcheckdocs:
 	$(Q)cd $(srctree);scripts/documentation-file-ref-check
 
-# no-ops for the Sphinx toolchain
-sgmldocs:
-	@:
-psdocs:
-	@:
-mandocs:
-	@:
-installmandocs:
-	@:
-
 cleandocs:
 	$(Q)rm -rf $(BUILDDIR)
 	$(Q)$(MAKE) BUILDDIR=$(abspath $(BUILDDIR)) $(build)=Documentation/media clean
