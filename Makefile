@@ -1137,6 +1137,7 @@ PHONY += kselftest
 kselftest:
 	$(Q)$(MAKE) -C tools/testing/selftests run_tests
 
+PHONY += kselftest-clean
 kselftest-clean:
 	$(Q)$(MAKE) -C tools/testing/selftests clean
 
