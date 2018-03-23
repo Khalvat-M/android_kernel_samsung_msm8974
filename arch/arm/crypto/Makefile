@@ -30,6 +30,7 @@ $(src)/sha256-core.S_shipped: $(src)/sha256-armv4.pl
 	$(call cmd,perl)
 
 .PRECIOUS: $(obj)/aesbs-core.S $(obj)/sha256-core.S
+targets += sha256-core.S sha512-core.S
 
 #Keep this at the bottom
 obj-$(CONFIG_CRYPTO_FIPS) += last_file_asm.o
