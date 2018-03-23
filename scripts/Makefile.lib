@@ -158,8 +158,8 @@ ifdef REGENERATE_PARSERS
 quiet_cmd_flex = LEX     $@
       cmd_flex = $(LEX) -o$@ -L $<
 
-.PRECIOUS: $(src)/%.lex.c_shipped
-$(src)/%.lex.c_shipped: $(src)/%.l
+.PRECIOUS: $(obj)/%.lex.c
+$(obj)/%.lex.c: $(src)/%.l FORCE
 	$(call cmd,flex)
 
 # YACC
@@ -167,15 +167,15 @@ $(src)/%.lex.c_shipped: $(src)/%.l
 quiet_cmd_bison = YACC    $@
       cmd_bison = $(YACC) -o$@ -t -l $<
 
-.PRECIOUS: $(src)/%.tab.c_shipped
-$(src)/%.tab.c_shipped: $(src)/%.y
+.PRECIOUS: $(obj)/%.tab.c
+$(obj)/%.tab.c: $(src)/%.y FORCE
 	$(call cmd,bison)
 
 quiet_cmd_bison_h = YACC    $@
       cmd_bison_h = bison -o/dev/null --defines=$@ -t -l $<
 
-.PRECIOUS: $(src)/%.tab.h_shipped
-$(src)/%.tab.h_shipped: $(src)/%.y
+.PRECIOUS: $(obj)/%.tab.h
+$(obj)/%.tab.h: $(src)/%.y FORCE
 	$(call cmd,bison_h)
 
 endif
