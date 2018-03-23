@@ -10,6 +10,7 @@
 # Normal rules
 #
 .*
+*.lex.c
 *.o
 *.o.*
 *.a
@@ -26,6 +27,7 @@
 *.lst
 *.symtypes
 *.order
+*.tab.[ch]
 modules.builtin
 *.elf
 *.gz
