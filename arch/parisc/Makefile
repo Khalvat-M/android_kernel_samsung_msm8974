@@ -21,6 +21,8 @@ KBUILD_DEFCONFIG := default_defconfig
 
 NM		= sh $(srctree)/arch/parisc/nm
 CHECKFLAGS	+= -D__hppa__=1
+LIBGCC		= $(shell $(CC) $(KBUILD_CFLAGS) -print-libgcc-file-name)
+export LIBGCC
 
 MACHINE		:= $(shell uname -m)
 ifeq ($(MACHINE),parisc*)
