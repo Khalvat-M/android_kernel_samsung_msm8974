@@ -4050,6 +4050,7 @@ L:	linux-kbuild@vger.kernel.org
 S:	Odd Fixes
 F:	Documentation/kbuild/kconfig-language.txt
 F:	scripts/kconfig/
+F:	scripts/Kconfig.include
 
 KDUMP
 M:	Vivek Goyal <vgoyal@redhat.com>
