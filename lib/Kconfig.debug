@@ -534,7 +534,7 @@ config DEBUG_KMEMLEAK_DEFAULT_OFF
 config KCOV_ENABLE_COMPARISONS
 	bool "Enable comparison operands collection by KCOV"
 	depends on KCOV
-	default n
+	depends on $(cc-option,-fsanitize-coverage=trace-cmp)
 	help
 	  KCOV also exposes operands of every comparison in the instrumented
 	  code along with operand sizes and PCs of the comparison instructions.
