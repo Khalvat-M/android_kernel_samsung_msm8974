@@ -31,13 +31,9 @@ endif
 
 ifdef CONFIG_64BIT
 UTS_MACHINE	:= parisc64
-CHECKFLAGS	+= -D__LP64__=1 -m64
-WIDTH		:= 64
-
-# FIXME: if no default set, should really try to locate dynamically
-ifeq ($(CROSS_COMPILE),)
-CROSS_COMPILE	:= hppa64-linux-gnu-
-endif
+CHECKFLAGS	+= -D__LP64__=1
+CC_ARCHES	= hppa64
+LD_BFD		:= elf64-hppa-linux
 else # 32-bit
 WIDTH		:=
 endif

@@ -48,7 +48,7 @@ ifeq ($(CONFIG_X86_32),y)
 else
         BITS := 64
         UTS_MACHINE := x86_64
-        CHECKFLAGS += -D__x86_64__ -m64
+        CHECKFLAGS += -D__x86_64__
 
         KBUILD_AFLAGS += -m64
         KBUILD_CFLAGS += -m64
